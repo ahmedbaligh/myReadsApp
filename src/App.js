@@ -58,6 +58,8 @@ class BooksApp extends Component {
     });
   }
 
+  clearResults = () => this.setState({ searchResults: [] });
+
   render() {
     const { books, searchResults, shelves } = this.state;
 

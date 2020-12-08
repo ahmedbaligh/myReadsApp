@@ -34,7 +34,7 @@ class BookSearch extends Component {
             <input 
               id='search-input'
               type='text'
-              placeholder='Search Books'
+              placeholder='Search by title or author'
               autoFocus
               value={query}
               onChange={evt => this.handleSearch(evt.target.value)}
