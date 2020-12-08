@@ -60,6 +60,17 @@ class BooksApp extends Component {
 
   clearResults = () => this.setState({ searchResults: [] });
 
+  changeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+    .then(res => {
+      let newBook = book;
+      newBook.shelf = shelf;
+
+      const newBooks = this.state.books.filter(b => b.id !== book.id);
+      this.setState({ books: [...newBooks, newBook] });
+    });
+  }
+
   render() {
     const { books, searchResults, shelves } = this.state;
 

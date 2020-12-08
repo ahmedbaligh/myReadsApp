@@ -10,7 +10,7 @@ class BookSearch extends Component {
 
   handleSearch = query => {
     this.setState({ query });
-    this.props.onSearch(query);
+    this.props.onSearch(query.trim());
   }
 
   clearQuery = () => this.updateQuery('');
