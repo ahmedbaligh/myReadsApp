@@ -2,10 +2,25 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import './App.css'
 import * as BooksAPI from './BooksAPI'
+import Reads from './Reads'
 import BookSearch from './BookSearch'
 
 class BooksApp extends Component {
   state = {
+    shelves: [
+      {
+        title: 'Currently Reading',
+        name: 'currentlyReading'
+      },
+      {
+        title: 'Want to Read',
+        name: 'wantToRead'
+      },
+      {
+        title: 'Read',
+        name: 'read'
+      }
+    ],
     books: [],
     searchResults: []
   }
@@ -44,12 +59,18 @@ class BooksApp extends Component {
   }
 
   render() {
-    // console.log(this.state);
-
-    const { searchResults } = this.state;
+    const { books, searchResults, shelves } = this.state;
 
     return (
       <div className='app'>
+        <Route exact path='/' render={() => (
+          <Reads
+            shelves={shelves}
+            books={books}
+            onShelfChange={this.changeShelf}
+            onLoad={this.clearResults}
+          />
+        )} />
         <Route path='/search' render={() => (
           <BookSearch
             books={searchResults}
