@@ -42,14 +42,14 @@ class BooksApp extends Component {
       if (res && res.length) {
         results = res.map(book => {
           // Map over results to compare with existing shelved books
-          const shelfBook = this.state.books.filter(b => book.id === b.id);
+          const [shelfBook] = this.state.books.filter(b => book.id === b.id);
 
           if (shelfBook) {
             book.shelf = shelfBook.shelf;
             return book;
           }
 
-          book.shelf = undefined;
+          book.shelf = 'none';
           return book;
         });
       }
